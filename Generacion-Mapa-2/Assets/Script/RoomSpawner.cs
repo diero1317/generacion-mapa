@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
@@ -56,6 +57,11 @@ public class RoomSpawner : MonoBehaviour
             }
             spawned = true;
         }
+    }
+
+    void Update()
+    {
+        
     }
 
     private void OnTriggerEnter(Collider collision)
