@@ -16,12 +16,14 @@ public class RoomSpawner : MonoBehaviour
     private RoomTemplate templates;
     private int i;
     private bool spawned = false;
+    
 
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplate>();
         Invoke("Spawn", 0.1f);
     }
+
 
     void Spawn()
     {
@@ -59,11 +61,6 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider collision)
     {
         if(collision.CompareTag("SpawnPoint"))
@@ -71,5 +68,4 @@ public class RoomSpawner : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }
