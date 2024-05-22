@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
@@ -22,6 +23,7 @@ public class RoomSpawner : MonoBehaviour
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplate>();
         Invoke("Spawn", 0.1f);
+        //Destroy(gameObject);
     }
 
 
@@ -65,7 +67,7 @@ public class RoomSpawner : MonoBehaviour
     {
         if(collision.CompareTag("SpawnPoint"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
