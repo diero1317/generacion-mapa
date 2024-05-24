@@ -22,11 +22,18 @@ public class RoomSpawner : MonoBehaviour
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplate>();
-        Invoke("Spawn", 0.1f);
+        StartCoroutine(Spawn());
     }
 
+    IEnumerator Spawn()
+    {
+        int delay = Random.Range(2, 5);
+        for (int i=0;i<delay;i++)
+            yield return null;
+        SpawnRoom();
+    }
 
-    void Spawn()
+    void SpawnRoom()
     {
         if (!spawned)
         {
