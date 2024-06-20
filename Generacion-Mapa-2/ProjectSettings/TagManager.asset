@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpawnPoint
   - Rooms
+  - Wall
   layers:
   - Default
   - TransparentFX

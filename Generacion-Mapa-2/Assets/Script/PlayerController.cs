@@ -2,39 +2,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;
+    public float speed = 5.0f;
 
     void Update()
     {
-        bool moveUp = Input.GetKey(KeyCode.W);
-        bool moveDown = Input.GetKey(KeyCode.S);
-        bool moveLeft = Input.GetKey(KeyCode.A);
-        bool moveRight = Input.GetKey(KeyCode.D);
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = Vector3.zero;
-
-        if (moveUp)
-        {
-            movement += Vector3.up;
-        }
-        if (moveDown)
-        {
-            movement += Vector3.down;
-        }
-        if (moveLeft)
-        {
-            movement += Vector3.left;
-        }
-        if (moveRight)
-        {
-            movement += Vector3.right;
-        }
-
-        if (movement.magnitude > 1f)
-        {
-            movement.Normalize();
-        }
-
-        transform.Translate(movement * speed * Time.deltaTime);
+        // Cambia el movimiento vertical al eje Y
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0.0f);
+        transform.Translate(movement * speed * Time.deltaTime, Space.World);
     }
 }

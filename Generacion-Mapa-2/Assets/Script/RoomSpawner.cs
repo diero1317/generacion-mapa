@@ -17,63 +17,92 @@ public class RoomSpawner : MonoBehaviour
     private RoomTemplate templates;
     private int i;
     private bool spawned = false;
-    
 
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplate>();
         StartCoroutine(Spawn());
+        //SpawnRoom();
     }
 
     IEnumerator Spawn()
     {
         int delay = Random.Range(2, 5);
-        for (int i=0;i<delay;i++)
+        for (int i = 0; i < delay; i++)
             yield return null;
         SpawnRoom();
     }
 
     void SpawnRoom()
     {
-        if (!spawned)
+        if (!spawned && templates.cRoom < templates.maxRoom)
         {
+            Debug.Log(templates.cRoom+ "," + templates.maxRoom);
+
             if (openSide == 1)
             {
                 //puerta arriba
-
-                i = Random.Range(0, templates.topRooms.Length);
+                i = Random.Range(1, templates.topRooms.Length);
                 Instantiate(templates.topRooms[i], transform.position, templates.topRooms[i].transform.rotation);
+                Destroy(gameObject);
             }
             else if (openSide == 2)
             {
                 //puerta abajo
-
-                i = Random.Range(0, templates.bottomRooms.Length);
+                i = Random.Range(1, templates.bottomRooms.Length);
                 Instantiate(templates.bottomRooms[i], transform.position, templates.bottomRooms[i].transform.rotation);
+                Destroy(gameObject);
             }
             else if (openSide == 3)
             {
                 //puerta izq
-
-                i = Random.Range(0, templates.leftRooms.Length);
+                i = Random.Range(1, templates.leftRooms.Length);
                 Instantiate(templates.leftRooms[i], transform.position, templates.leftRooms[i].transform.rotation);
+                Destroy(gameObject);
             }
             else if (openSide == 4)
             {
                 //puerta der
-
-                i = Random.Range(0, templates.rightRooms.Length);
+                i = Random.Range(1, templates.rightRooms.Length);
                 Instantiate(templates.rightRooms[i], transform.position, templates.rightRooms[i].transform.rotation);
+                Destroy(gameObject);
             }
             spawned = true;
+            templates.cRoom++;
         }
+        else //if (templates.cRoomFinal <= 3)
+        {
+            if (openSide == 1)
+            {
+                Instantiate(templates.topRooms[0], transform.position, templates.topRooms[0].transform.rotation);
+                Destroy(gameObject);
+            }
+            else if (openSide == 2)
+            {
+                Instantiate(templates.bottomRooms[0], transform.position, templates.bottomRooms[0].transform.rotation);
+                Destroy(gameObject);
+            }
+            else if (openSide == 3)
+            {
+                Instantiate(templates.leftRooms[0], transform.position, templates.leftRooms[0].transform.rotation);
+                Destroy(gameObject);
+            }
+            else if (openSide == 4)
+            {
+                Instantiate(templates.rightRooms[0], transform.position, templates.rightRooms[0].transform.rotation);
+                Destroy(gameObject);
+            }
+            spawned = true;
+            Debug.Log("xd");
+        }
+        
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.CompareTag("SpawnPoint"))
+        if (collision.CompareTag("SpawnPoint"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
