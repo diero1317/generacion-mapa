@@ -4212,8 +4212,8 @@ MonoBehaviour:
   - {fileID: 999218241558380732, guid: 05a7c3f5d63460b4080694ac02b5d9d5, type: 3}
   - {fileID: 6213411883589874707, guid: d992fb7d97efbb540b987f615c05aba7, type: 3}
   - {fileID: 1172719956904574690, guid: 28a24b6fd080df94280a0207b7dd3c7c, type: 3}
-  maxRoom: 50
-  cRoom: 0
+  maxRoom: 5
+  cRoom: 5
 --- !u!4 &2011372166
 Transform:
   m_ObjectHideFlags: 0

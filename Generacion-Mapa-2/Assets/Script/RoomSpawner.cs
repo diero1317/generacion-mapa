@@ -22,14 +22,11 @@ public class RoomSpawner : MonoBehaviour
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplate>();
         StartCoroutine(Spawn());
-        //SpawnRoom();
     }
 
     IEnumerator Spawn()
     {
-        int delay = Random.Range(2, 5);
-        for (int i = 0; i < delay; i++)
-            yield return null;
+        yield return null;
         SpawnRoom();
     }
 
@@ -93,16 +90,15 @@ public class RoomSpawner : MonoBehaviour
                 Destroy(gameObject);
             }
             spawned = true;
-            Debug.Log("xd");
         }
         
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("SpawnPoint"))
+        if (collision.CompareTag("SpawnPoint") && spawned)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }
