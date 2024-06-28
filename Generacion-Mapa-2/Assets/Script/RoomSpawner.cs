@@ -93,12 +93,17 @@ public class RoomSpawner : MonoBehaviour
         }
         
     }
-
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("SpawnPoint") && spawned)
+        // Si el collider tiene la etiqueta "SpawnPoint"
+        if (collision.CompareTag("SpawnPoint"))
         {
-            Destroy(gameObject);
+            // Si la habitación aún no ha sido generada
+            if (!spawned)
+            {
+                // Destruye el objeto spawner
+                Destroy(gameObject);
+            }
         }
     }
 }
